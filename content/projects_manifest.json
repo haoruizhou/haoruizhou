@@ -1,0 +1,23 @@
+[
+  {
+    "id": "pecan",
+    "title": "PROJECT PECAN",
+    "tech_stack": "React / C++ / CAN BUS",
+    "description": "Browser-based diagnostic platform for racing telemetry. Real-time CAN-bus decoding.",
+    "theme": "blue"
+  },
+  {
+    "id": "sandbox",
+    "title": "WFR SANDBOX",
+    "tech_stack": "Python / Slack API / AI",
+    "description": "AI-driven interface generating Python code to query telemetry databases via Slack.",
+    "theme": "green"
+  },
+  {
+    "id": "scraper",
+    "title": "AUTO-SCRAPER",
+    "tech_stack": "Selenium / Local LLM",
+    "description": "Automated market-data collection pipeline with LLM-powered summarization.",
+    "theme": "amber"
+  }
+]
