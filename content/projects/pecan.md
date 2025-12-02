@@ -7,6 +7,10 @@
 <span class="px-2 py-1 bg-orange-900 text-orange-200 border border-orange-700 rounded text-xs">CAN BUS</span>
 </div>
 
+<div class="mb-8">
+<a href="https://0001200.xyz/project-pecan-website/" target="_blank" class="px-3 py-2 bg-green-900/50 hover:bg-green-800 text-green-200 rounded border border-green-700 text-sm transition">VIEW PROJECT SITE &rarr;</a>
+</div>
+
 <h3>// INTERACTIVE DIAGNOSTICS</h3>
 <div class="bg-black border border-gray-700 p-4 rounded font-mono text-xs mb-6">
 <div class="flex justify-between mb-2">
