@@ -23,3 +23,8 @@ EXEC
 
 <h3>// THE ARCHITECTURE</h3>
 <p>I built "WFR Sandbox," an AI-driven Slack bot that acts as a data analyst. It parses natural language, generates Python code, and executes it in a secure container.</p>
+
+<div class="mt-6 mb-2">
+    <img src="content/projects-assets/Lappy-INV.png" alt="WFR Sandbox Interface on Laptop" class="w-full rounded border border-gray-700 shadow-lg opacity-90 hover:opacity-100 transition-opacity duration-300">
+    <div class="text-xs text-gray-500 font-mono mt-1 text-center">// SYSTEM_VISUALIZATION_V1.0</div>
+</div>

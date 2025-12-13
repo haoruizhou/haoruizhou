@@ -53,7 +53,7 @@ CDH Investment. Automated market-data collection w/ Python-Selenium & LLMs. Redu
 <div class="col-span-4 md:col-span-3 font-bold">M.Sc. & B.A.</div>
 <div class="col-span-2 hidden md:block text-gray-500">UWO / UCSB</div>
 <div class="col-span-6 md:col-span-5 text-gray-300 italic">
-M.Sc. Geography (Western U, exp 2026). B.A. GIS (UCSB, 2024, Distinction in Major).
+M.Sc. Geography (Western University, exp July 2026). B.A. GIS (UC Santa Barbara, 2024, Distinction in Major).
 </div>
 </div>
 </div>
@@ -62,6 +62,6 @@ M.Sc. Geography (Western U, exp 2026). B.A. GIS (UCSB, 2024, Distinction in Majo
 <div class="mt-4 flex justify-end font-mono text-sm">
 <div class="border-t border-gray-600 pt-2 text-right">
 <span class="text-gray-500 mr-4">CERTIFICATIONS:</span>
-<span class="text-amber-400 font-bold">TC/FAA PRIVATE PILOT, ADV DRONE OPS</span>
+<span class="text-amber-400 font-bold">TC/FAA PRIVATE PILOT, BASIC DRONE OPS</span>
 </div>
 </div>
