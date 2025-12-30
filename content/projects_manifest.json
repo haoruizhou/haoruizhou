@@ -13,6 +13,13 @@
     "description": "AI-driven interface generating Python code to query telemetry databases via Slack.",
     "theme": "green"
   },
+    {
+    "id": "assets-db",
+    "title": "WFR ASSETS DB",
+    "tech_stack": "Python / Fast API / PostgreSQL",
+    "description": "Centralized asset management system with RESTful API for internal use, with a beautiful UI.",
+    "theme": "#FFAD00"
+  },
   {
     "id": "scraper",
     "title": "AUTO-SCRAPER",

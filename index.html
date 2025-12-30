@@ -530,7 +530,7 @@
 
 <script>
     // Define functions globally so they are accessible from onclick handlers
-    let switchView, toggleMenu, openProjectModal, closeProjectModal, simulatePecan, runConsoleDemo, toggleStatus;
+    let switchView, toggleMenu, openProjectModal, closeProjectModal;
 
     window.addEventListener('DOMContentLoaded', (event) => {
 
@@ -561,7 +561,17 @@
                         amber: { border: 'border-amber-500', text: 'text-amber-400', hover: 'group-hover:text-amber-400', bg: 'bg-amber-900/50', btnText: 'text-amber-300', btnBorder: 'border-amber-800', btnHover: 'group-hover:bg-amber-600' }
                     };
                     
-                    const theme = colors[p.theme] || colors['blue'];
+                    // Check if theme is a hex color or predefined
+                    let isHex = p.theme && p.theme.startsWith('#');
+                    let theme = isHex ? {
+                        border: `border-[${p.theme}]`,
+                        text: `text-[${p.theme}]`,
+                        hover: `group-hover:text-[${p.theme}]`,
+                        bg: `bg-[${p.theme}]/20`,
+                        btnText: `text-[${p.theme}]`,
+                        btnBorder: `border-[${p.theme}]/50`,
+                        btnHover: `group-hover:bg-[${p.theme}]`
+                    } : (p.theme && colors[p.theme] ? colors[p.theme] : colors['blue']);
 
                     return `
                     <div class="bg-gray-900 border-l-4 ${theme.border} p-4 cursor-pointer hover:bg-gray-800 transition group flex flex-col h-full relative" onclick="openProjectModal('${p.id}')">
@@ -695,6 +705,32 @@
 
         // --- MODAL LOGIC --- //
 
+        // Track loaded scripts to avoid duplicates
+        const loadedScripts = new Set();
+
+        // Dynamic script loader
+        function loadProjectScript(projectId) {
+            return new Promise((resolve, reject) => {
+                // Check if script already loaded
+                if (loadedScripts.has(projectId)) {
+                    resolve();
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = `scripts/${projectId}.js`;
+                script.onload = () => {
+                    loadedScripts.add(projectId);
+                    resolve();
+                };
+                script.onerror = () => {
+                    console.warn(`[Script Loader] Optional script not found: ${projectId}.js`);
+                    resolve(); // Don't fail if script doesn't exist
+                };
+                document.head.appendChild(script);
+            });
+        }
+
         openProjectModal = async function(projectId) {
             const modal = document.getElementById('project-modal');
             const contentDiv = document.getElementById('modal-content');
@@ -706,7 +742,12 @@
             contentDiv.innerHTML = '<div class="text-amber-400 font-mono animate-pulse">LOADING MISSION DATA...</div>';
 
             try {
-                const response = await fetch(`content/projects/${projectId}.md`);
+                // Load content and script in parallel
+                const [response] = await Promise.all([
+                    fetch(`content/projects/${projectId}.md`),
+                    loadProjectScript(projectId)
+                ]);
+                
                 if (!response.ok) throw new Error('Failed to load mission log');
                 const text = await response.text();
                 
@@ -727,91 +768,6 @@
             if (!event || event.target.id === 'project-modal') {
                 const modal = document.getElementById('project-modal');
                 if(modal) modal.classList.add('hidden');
-            }
-        }
-
-        // --- INTERACTIVE PLACEHOLDER FUNCTIONS --- //
-
-        // 1. Pecan Simulation
-        simulatePecan = function() {
-            const bar = document.getElementById('pecan-bar');
-            const status = document.getElementById('pecan-status');
-            const log = document.getElementById('pecan-log');
-
-            if(status) {
-                status.innerText = "ESTABLISHING...";
-                status.className = "text-amber-400 font-bold blink";
-            }
-
-            // Animate Bar
-            if(bar) bar.style.width = "100%";
-
-            // Fake Logs
-            let logs = [
-                "Connecting to MQTT Broker...",
-                "Subscribing to topic: wfr/telemetry/v1",
-                "Handshake ACK received.",
-                "Decoded Frame ID: 0x4F2 (RPM)",
-                "Decoded Frame ID: 0x4F3 (Oil_Press)",
-                "Stream Stable. Bandwidth: 12kb/s"
-            ];
-
-            let i = 0;
-            const interval = setInterval(() => {
-                if(i < logs.length) {
-                    if(log) {
-                        log.innerHTML += `<div>> ${logs[i]}</div>`;
-                        log.scrollTop = log.scrollHeight;
-                    }
-                    i++;
-                } else {
-                    clearInterval(interval);
-                    if(status) {
-                        status.innerText = "CONNECTED (100hz)";
-                        status.className = "text-green-500 font-bold";
-                    }
-                }
-            }, 300);
-        }
-
-        // 2. Sandbox Console Simulation
-        runConsoleDemo = function() {
-            const output = document.getElementById('console-output');
-
-            const responses = [
-                '<span class="text-gray-500">root@wfr-sandbox:~#</span> Parsing intent...',
-                '<span class="text-blue-400">DEBUG:</span> Identified target table: "engine_logs"',
-                '<span class="text-blue-400">DEBUG:</span> Generated SQL: SELECT max(rpm) FROM run_4',
-                '<span class="text-gray-500">root@wfr-sandbox:~#</span> Executing query...',
-                '<span class="text-green-400 font-bold">RESULT:</span> Max RPM: 11,450'
-            ];
-
-            let i = 0;
-            const interval = setInterval(() => {
-                if(i < responses.length) {
-                    if(output) {
-                        output.innerHTML += `<div>${responses[i]}</div>`;
-                        output.scrollTop = output.scrollHeight;
-                    }
-                    i++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 600);
-        }
-
-        // 3. Scraper Toggle Simulation
-        toggleStatus = function(element) {
-            const indicator = element.querySelector('.status-indicator');
-
-            if (indicator.innerText.includes('ACTIVE')) {
-                // Turn Off
-                indicator.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.8)]"></span> OFFLINE`;
-                indicator.className = "status-indicator text-red-500 font-bold flex items-center gap-2";
-            } else {
-                // Turn On
-                indicator.innerHTML = `<span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]"></span> ACTIVE`;
-                indicator.className = "status-indicator text-green-500 font-bold flex items-center gap-2";
             }
         }
 

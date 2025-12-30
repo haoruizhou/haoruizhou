@@ -1,5 +1,5 @@
 <h1 class="text-2xl text-white font-bold mb-2">WFR SANDBOX: NLP DATA INTERFACE</h1>
-<div class="text-gray-500 text-xs mb-4 border-b border-gray-700 pb-2">DATE: JAN 2025 // CLASS: AI TOOLS</div>
+<div class="text-gray-500 text-xs mb-4 border-b border-gray-700 pb-2">DATE: JAN 2025 // TEAM: WESTERN FORMULA RACING</div>
 
 <div class="flex gap-2 mb-8">
 <span class="px-2 py-1 bg-green-900 text-green-200 border border-green-700 rounded text-xs">PYTHON</span>

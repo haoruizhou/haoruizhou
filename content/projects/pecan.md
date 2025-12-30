@@ -1,5 +1,5 @@
 <h1 class="text-2xl text-white font-bold mb-2">PROJECT PECAN: WIRELESS DIAGNOSTIC</h1>
-<div class="text-gray-500 text-xs mb-4 border-b border-gray-700 pb-2">DATE: OCT 2024 // CLASS: ENGINEERING ARCHITECTURE</div>
+<div class="text-gray-500 text-xs mb-4 border-b border-gray-700 pb-2">DATE: OCT 2024 // TEAM: WESTERN FORMULA RACING</div>
 
 <div class="flex gap-2 mb-8">
 <span class="px-2 py-1 bg-blue-900 text-blue-200 border border-blue-700 rounded text-xs">REACT</span>
