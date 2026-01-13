@@ -7,6 +7,12 @@
 <span class="px-2 py-1 bg-orange-900 text-orange-200 border border-orange-700 rounded text-xs">Database</span>
 </div>
 
+<div class="mb-6">
+  <a href="http://148.113.191.22:3025/" target="_blank" class="inline-block bg-green-900/30 hover:bg-green-800/50 text-green-300 px-4 py-2 rounded border border-green-700 transition">
+    → LIVE PREVIEW
+  </a>
+</div>
+
 <h3>// SQL PLAYGROUND</h3>
 <div class="bg-black border border-gray-700 p-4 rounded font-mono text-xs mb-6">
 <div class="flex justify-between mb-2">
